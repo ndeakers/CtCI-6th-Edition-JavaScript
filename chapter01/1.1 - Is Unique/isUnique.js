@@ -1,5 +1,5 @@
-var allUniqueChars = function(string) {
-  
+var allUniqueChars = function (string) {
+
   // O(n^2) approach, no additional data structures used
   // for each character, check remaining characters for duplicates
   for (var i = 0; i < string.length; i++) {
@@ -12,16 +12,16 @@ var allUniqueChars = function(string) {
   return true; // if no match, return true
 };
 
-const everyCharUnique = (str, indexOffset = 'a'.charCodeAt()) => {
-    let counterTable = Number();
-    for(let index of [...str].map(c => c.charCodeAt() - indexOffset)) {
-        const mask = 1 << index;
-        if(counterTable & mask)
-            return false;
-        counterTable |= mask;
-    }
-    return true;
-};
+// const everyCharUnique = (str, indexOffset = 'a'.charCodeAt()) => {
+//     let counterTable = Number();
+//     for(let index of [...str].map(c => c.charCodeAt() - indexOffset)) {
+//         const mask = 1 << index;
+//         if(counterTable & mask)
+//             return false;
+//         counterTable |= mask;
+//     }
+//     return true;
+// };
 
 function everyCharUnique(str) {
   let obj = {};
