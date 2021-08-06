@@ -3,42 +3,78 @@ var LinkedList = function (value) {
   this.next = null;
 };
 
+// function partition(head, partition) {
+//   let beforeStart = null
+//   let beforeEnd = null
+//   let afterStart = null
+//   let afterEnd = null
+
+//   let current = head;
+//   while (current !== null) {
+//     let next = current.next;
+//     current.next = null;
+//     if (current.val < partition) {
+//       if (beforeStart === null) {
+//         beforeStart = current;
+//         beforeEnd = beforeStart;
+//       } else {
+//         beforeEnd.next = current;
+//         beforeEnd = current;
+//       }
+//     } else {
+//       if (afterStart === null) {
+//         afterStart = current;
+//         afterEnd = afterStart;
+//       } else {
+//         afterEnd.next = current;
+//         afterEnd = current;
+//       }
+//     }
+//     current = next;
+//   }
+//   if (beforeStart === null) {
+//     return afterStart;
+//   }
+//   beforeEnd.next = afterStart;
+//   return beforeStart;
+// }
+
+
 function partition(head, partition) {
-  let beforeStart = null
-  let beforeEnd = null
-  let afterStart = null
-  let afterEnd = null
+  let leftStart = null;
+  let rightStart = null;
+  let rightEnd = null;
+  let leftEnd = null;
 
   let current = head;
   while (current !== null) {
     let next = current.next;
     current.next = null;
-    if (current.val < partition) {
-      if (beforeStart === null) {
-        beforeStart = current;
-        beforeEnd = beforeStart;
+    if (current.value < partition) {
+      if (leftStart === null) {
+        leftStart = current;
+        leftEnd = current;
       } else {
-        beforeEnd.next = current;
-        beforeEnd = current;
+        leftEnd.next = current;
+        leftEnd = current;
       }
     } else {
-      if (afterStart === null) {
-        afterStart = current;
-        afterEnd = afterStart;
+      if (rightStart === null) {
+        rightStart = current;
+        rightEnd = current;
       } else {
-        afterEnd.next = current;
-        afterEnd = current;
+        rightEnd.next = current;
+        rightEnd = current;
       }
     }
     current = next;
   }
-  if (beforeStart === null) {
-    return afterStart;
+  if (leftStart === null) {
+    return rightStart;
   }
-  beforeEnd.next = afterStart;
-  return beforeStart;
+  leftEnd.next = rightStart;
+  return leftStart;
 }
-
 /* TESTS */
 // Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition = 5]
 // Output: 3 -> 2 -> 1 -> 5 -> 5 -> 8 -> 10
